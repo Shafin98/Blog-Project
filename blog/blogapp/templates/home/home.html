@@ -124,15 +124,15 @@
 <!-- ========== NAVBAR ========== -->
 <header>
     <div class="nav-container">
-        <a href="#" class="logo">MyBlog</a>
+        <a href="{% url 'home' %}" class="logo">MyBlog</a>
 
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Create Post</a></li>
-                <li><a href="#">My Posts</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'create_post' %}">Create Post</a></li>
+                <li><a href="{% url 'view_post' %}">My Posts</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
                 <li><a href="#" class="logout">Logout</a></li>
             </ul>
         </nav>
