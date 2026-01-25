@@ -58,7 +58,7 @@ def login_view(request):
             
             if user:
                 login(request, user)
-                return redirect('dashboard')
+                return redirect('home')
             else:
                 return render(request, 'auth/login.html', {'error': 'Invalid credentials.'})
 
@@ -67,11 +67,15 @@ def login_view(request):
 
     return render(request, 'auth/login.html')
 
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
+@login_required
 def create_post(request):
-    pass
+    return render(request, 'posts/create_post.html')
 
-
+@login_required
 def view_post(request):
-    pass
+    return render(request, 'posts/my_post.html')
 

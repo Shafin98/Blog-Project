@@ -16,7 +16,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-color: #f4f6f8;
+            background-color: #d5d7d8;
         }
 
         /* ========== NAVBAR ========== */
@@ -133,7 +133,7 @@
                 <li><a href="{% url 'view_post' %}">My Posts</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
-                <li><a href="#" class="logout">Logout</a></li>
+                <li><a href="{% url 'logout_view' %}" class="logout">Logout</a></li>
             </ul>
         </nav>
     </div>
