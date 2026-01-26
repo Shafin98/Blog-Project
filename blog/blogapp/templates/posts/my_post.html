@@ -2,10 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post List</title>
+    <title>Blogs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #66e6ea 0%, #4b64a2 100%);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .table-container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #66aaea;
+            color: white;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .time {
+            color: #555;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .user {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-    <h1>Post List</h1>
+
+<h2>Blog List</h2>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created By</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for post in post_list %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.description }}</td>
+                <td class="user">{{ post.user.first_name }} {{ task.user.last_name }}</td>
+                <td class="time">{{ post.created_at|date:"M d, Y • H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="empty">No tasks available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

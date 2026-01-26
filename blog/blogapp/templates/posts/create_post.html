@@ -2,10 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Create</title>
+    <title>Create Post</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #ea8366 0%, #a24b9e 100%);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: linear-gradient(135deg, #a24b9e 0%, #ea8366 100%);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 90px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #66aaea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #a24b6c;
+        }
+
+        .form-group {
+            margin-top: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #66aaea;
+        }
+    </style>
 </head>
 <body>
-    <h1>Create Post</h1>
+
+<div class="form-container">
+    <h2>Create Post</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required>
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description"></textarea>
+
+
+        <button type="submit">Create Task</button>
+    </form>
+</div>
+
 </body>
 </html>

@@ -13,3 +13,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username.username
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_created=True)

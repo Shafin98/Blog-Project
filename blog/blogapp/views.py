@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Post
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -73,9 +73,26 @@ def logout_view(request):
 
 @login_required
 def create_post(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        Post.objects.create(
+            title=title,
+            description=description,
+            created_by=request.user,
+        )
+
+        return redirect('home')
+
     return render(request, 'posts/create_post.html')
 
 @login_required
 def view_post(request):
+
+    if request.method == 'GET':
+        post_list = Post.objects.all()
+        return render(request, 'posts/my_post.html' , {'post_list': post_list})
+
     return render(request, 'posts/my_post.html')
 
