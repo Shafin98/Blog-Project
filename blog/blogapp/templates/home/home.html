@@ -144,6 +144,21 @@
     <h2>Latest Blog Posts</h2>
 
     <div class="posts">
+
+        {% for post in post_list %}
+            <div class="post-card">
+                <div>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.description }}</p>
+                </div>
+                <div class="post-footer">
+                    By <strong>
+                        {{ post.created_by.first_name }} {{ post.created_by.last_name }}
+                    </strong> | {{ post.created_at|date:"M d, Y • H:i" }}
+                </div>
+            </div>
+        {% endfor %}
+
         <div class="post-card">
             <div>
                 <h3>Blog Title</h3>

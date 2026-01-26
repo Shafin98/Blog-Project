@@ -9,6 +9,11 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
 
+    if request.method == 'GET':
+        post_list = Post.objects.all()
+        return render(request, 'home/home.html' , {'post_list': post_list})
+
+
     return render(request, 'home/home.html')
 
 def register(request):
