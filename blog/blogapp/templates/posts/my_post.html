@@ -1,82 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blogs</title>
+{% extends "base.html" %}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+{% block title %}My Posts{% endblock %}
 
-        body {
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #66e6ea 0%, #4b64a2 100%);
-        }
+{% block extra_css %}
+<style>
+    body {
+        background: linear-gradient(135deg, #e7e2e1 0%, #898088 100%);
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    .table-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+    }
 
-        .table-container {
-            max-width: 900px;
-            margin: auto;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-        }
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    .table-container {
+        max-width: 900px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    }
 
-        thead {
-            background: #66aaea;
-            color: white;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        th, td {
-            padding: 14px;
-            text-align: left;
-            vertical-align: top;
-        }
+    thead {
+        background: #66aaea;
+        color: white;
+    }
 
-        th {
-            font-size: 14px;
-            text-transform: uppercase;
-        }
+    th, td {
+        padding: 14px;
+        text-align: left;
+        vertical-align: top;
+    }
 
-        tr {
-            border-bottom: 1px solid #ddd;
-        }
+    th {
+        font-size: 14px;
+        text-transform: uppercase;
+    }
 
-        .time {
-            color: #555;
-            font-size: 13px;
-            white-space: nowrap;
-        }
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
 
-        .user {
-            font-weight: bold;
-            color: #444;
-        }
+    .time {
+        color: #555;
+        font-size: 13px;
+        white-space: nowrap;
+    }
 
-        .empty {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
+    .user {
+        font-weight: bold;
+        color: #444;
+    }
 
-<h2>Blog List</h2>
+    .empty {
+        text-align: center;
+        padding: 20px;
+        color: #777;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>My Blog Posts</h2>
 
 <div class="table-container">
     <table>
@@ -88,19 +86,16 @@
                 <th>Time</th>
             </tr>
         </thead>
-
         <tbody>
             {% for post in post_list %}
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.description }}</td>
-                <td class="user">{{ post.created_by.first_name }} {{ post.created_by.last_name }}</td>
-                <td class="time">{{ post.created_at|date:"M d, Y • H:i" }}</td>
+                <td>{{ post.created_by.first_name }}</td>
+                <td>{{ post.created_at|date:"M d, Y • H:i" }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
-</body>
-</html>
+{% endblock %}
