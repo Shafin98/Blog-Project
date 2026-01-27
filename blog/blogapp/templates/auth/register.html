@@ -79,6 +79,22 @@
             text-decoration: underline;
         }
 
+        .login-text-home{
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-text-home a {
+            color: rgb(56, 196, 63);
+            text-decoration: none;
+            font-weight: bolder;
+        }
+
+        .login-text-home a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -117,6 +133,10 @@
         <p class="login-text">
             Already have an account?
             <a href="{% url 'login' %}">Login</a>
+        </p>
+        <p class="login-text-home">
+            Visit 
+            <a href="{% url 'home' %}">Home</a>
         </p>
 
     </form>
