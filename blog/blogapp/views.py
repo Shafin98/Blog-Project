@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Profile, Post
@@ -96,22 +96,30 @@ def create_post(request):
 def view_post(request):
 
     if request.method == 'GET':
-        post_list = Post.objects.all()
+        post_list = Post.objects.filter(created_by=request.user)
         return render(request, 'posts/my_post.html' , {'post_list': post_list})
-
-    return render(request, 'posts/my_post.html')
 
 def post_detail(request, post_id):
 
-    post = Post.objects.get(id=post_id)
+    post = get_object_or_404(Post, id=post_id)
     return render(request, 'posts/post_details.html', {'post': post})
 
+@login_required
+def edit_post(request, post_id):
 
+    post = get_object_or_404(Post, id=post_id, created_by=request.user)
+
+    if request.method == 'POST':
+        post.title = request.POST.get('title')
+        post.description = request.POST.get('description')
+        post.save()
+        return redirect('view_post')
+
+    return render(request, 'posts/post_edit.html', {'post': post})
 
 @login_required
 def delete_post(request, post_id):
-
-    post = Post.objects.get(id=post_id)
+    post = get_object_or_404(Post, id=post_id, created_by=request.user)
     post.delete()
-    return HttpResponse("Task deleted successfully.")
+    return redirect('view_post')
     
