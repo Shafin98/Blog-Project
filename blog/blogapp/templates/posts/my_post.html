@@ -7,7 +7,6 @@
 
     * {
         box-sizing: border-box;
-        overflow: hidden;
     }
 
     body {
@@ -37,6 +36,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
     }
 
     thead {
@@ -48,6 +48,11 @@
         padding: 14px;
         text-align: left;
         vertical-align: top;
+    }
+
+    td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
     }
 
     th {
@@ -102,6 +107,16 @@
         opacity: 0.85;
     }
 
+    .desc {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;  
+        overflow: hidden;
+
+
+        line-height: 1;
+    }
+
 </style>
 {% endblock %}
 
@@ -123,7 +138,7 @@
             {% for post in post_list %}
             <tr>
                 <td>{{ post.title }}</td>
-                <td>{{ post.description }}</td>
+                <td class="desc">{{ post.description }}</td>
                 <td>{{ post.created_by.first_name }}</td>
                 <td>{{ post.created_at|date:"M d, Y • H:i" }}</td>
                 <td class="actions">
