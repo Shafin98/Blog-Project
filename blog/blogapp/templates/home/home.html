@@ -16,7 +16,11 @@
                 </strong>
                 | {{ post.created_at|date:"M d, Y • H:i" }}
             </div>
-            <button>view</button>
+            <div class="post-actions">
+                <a href="{% url 'post_detail' post.id %}" class="view-btn">
+                    View
+                </a>
+            </div>
         </div>
     {% empty %}
         <p>No posts yet.</p>
