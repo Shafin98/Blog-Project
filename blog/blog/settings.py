@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8q=yso3(o+ly&8mk%-t=%ncexl48($$k)99#dxmhc=bd_1ave-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['blogapp.onrender.com']
+ALLOWED_HOSTS = ['shafins-blog-project.onrender.com']
 
 
 # Application definition
@@ -131,8 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
