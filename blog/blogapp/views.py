@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile, Post
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,11 +32,13 @@ def register(request):
 
         if User.objects.filter(username=username).exists():
              return render(request, 'auth/register.html', {'error': 'Username allready exists'})
-        user = User.objects.create_user(username=username,
-                                        password=password,
-                                        email=email,
-                                        first_name=first_name,
-                                        last_name=last_name)
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            email=email,
+            first_name=first_name,
+            last_name=last_name
+        )
         Profile.objects.create(
             username=user,
             phone=phone,
@@ -43,9 +46,9 @@ def register(request):
             date_of_birth=date_of_birth
         )
 
-        return render(request, 'auth/register.html')
-    else:
-        return render(request, 'auth/register.html', {'message': 'User registered successfully'})
+        return redirect('login')
+    
+    return render(request, 'auth/register.html')
 
 
 def login_view(request):
@@ -76,7 +79,10 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-@login_required
+def login_required_page(request):
+    return render(request, 'block/no_permission.html')
+
+@login_required(login_url='login_required')
 def create_post(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -92,7 +98,7 @@ def create_post(request):
 
     return render(request, 'posts/create_post.html')
 
-@login_required
+@login_required(login_url='login_required')
 def view_post(request):
 
     if request.method == 'GET':
@@ -104,7 +110,7 @@ def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'posts/post_details.html', {'post': post})
 
-@login_required
+@login_required(login_url='login_required')
 def edit_post(request, post_id):
 
     post = get_object_or_404(Post, id=post_id, created_by=request.user)
@@ -117,7 +123,7 @@ def edit_post(request, post_id):
 
     return render(request, 'posts/post_edit.html', {'post': post})
 
-@login_required
+@login_required(login_url='login_required')
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, created_by=request.user)
     post.delete()

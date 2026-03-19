@@ -4,11 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No Permission</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #ff4d4f;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #777;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4facfe;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+    </style>
 </head>
 <body>
-    <h1>Access Denied</h1>
-    <h3>Login Required</h3>
-    <p>You do not have permission to access this page.</p>
-    <a href="{% url 'home' %}">Go back to home</a>
+
+    <div class="container">
+        <h1>Access Denied</h1>
+        <h3>Login Required</h3>
+        <p>You do not have permission to access this page.</p>
+        <a href="{% url 'login' %}">Go back to Login</a>
+    </div>
+
 </body>
 </html>
